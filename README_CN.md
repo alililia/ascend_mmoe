@@ -95,10 +95,7 @@ Usage: bash run_standalone_train_ascend.sh [DATA_PATH] [DEVICE_ID] [CKPT_PATH] [
 [DEVICE_ID]为执行train.py的ID号。
 [CONFIG_FILE]是模型及运行的整体参数。
 
-[DATA_PATH]是数据集的路径(mindrecord文件所在的目录)。
-[CKPT_PATH]是要将ckpt保存的位置。
-[DEVICE_ID]为执行train.py的ID号。
-[CONFIG_FILE]是模型及运行的整体参数。
+
 
 # 运行评估示例（Ascend）
 Usage: bash run_standalone_eval_ascend.sh [DATA_PATH] [CKPT_PATH] [DEVICE_ID] [CONFIG_FILE]
@@ -107,10 +104,7 @@ Usage: bash run_standalone_eval_ascend.sh [DATA_PATH] [CKPT_PATH] [DEVICE_ID] [C
 [DEVICE_ID]为执行eval.py的ID号。
 [CONFIG_FILE]是模型及运行的整体参数。
 
-[DATA_PATH]是数据集的路径(mindrecord文件所在的目录)。
-[CKPT_PATH]是保存ckpt的位置。
-[DEVICE_ID]为执行eval.py的ID号。
-[CONFIG_FILE]是模型及运行的整体参数。
+
 ```
 
 # 脚本说明
@@ -235,25 +229,7 @@ epoch: 10 step: 780, loss is 0.2761521
 
 ...
 
-epoch: 1 step: 1558, loss is 0.7738624215126038
-epoch time: 23271.168 ms, per step time: 14.937 ms
-start infer...
-infer data finished, start eval...
-result : income_auc=0.956143804122577, marital_auc=0.8883598309142848, use time 2s
-The best income_auc is 0.956143804122577,             the best marital_auc is 0.8883598309142848,             the best income_marital_auc_avg is 0.9222518175184309
-epoch: 2 step: 1558, loss is 0.4517086148262024
-epoch time: 17804.081 ms, per step time: 11.428 ms
-start infer...
-infer data finished, start eval...
-result : income_auc=0.9856142129882843, marital_auc=0.9194419616798691, use time 1s
-The best income_auc is 0.9856142129882843,             the best marital_auc is 0.9194419616798691,             the best income_marital_auc_avg is 0.9525280873340767
-epoch: 3 step: 1558, loss is 0.41103610396385193
-epoch time: 17853.932 ms, per step time: 11.460 ms
-start infer...
-infer data finished, start eval...
-result : income_auc=0.9876599788311389, marital_auc=0.9663552616198483, use time 1s
-The best income_auc is 0.9876599788311389,             the best marital_auc is 0.9663552616198483,             the best income_marital_auc_avg is 0.9770076202254936
-...
+
 ```
 
 # 评估过程
@@ -323,23 +299,24 @@ bash run_infer_310.sh [MINDIR_PATH] [DATA_PATH] [NEED_PREPROCESS] [DEVICE_ID]
 
 #### census-income上的MMoE
 
-|---|---|---|
-| 模型版本  | MMoE  |MMoE|
-| 上传日期  |2021-11-12 ;  |2022-2-19|
-| MindSpore版本  | 1.3.0 |1.6.0|
-| 数据集  | census-income |census-income|
-| 训练参数  | epoch=100, batch_size = 32  |epoch=100, batch_size = 128|
-| 优化器  | Adam  |Adam|
-| 损失函数  | BCELoss |BCELoss|
-| 输出  | 概率 |概率|
-|  损失 | 0.20949207 |0.21848808228969574|
-|速度|0.671毫秒/步 |11.399毫秒/步|
-|总时长   |  17分钟 |32分钟|
-|参数   | 23.55KB |23.55KB|
-|精度指标   | best income_auc:0.9895    best marital_auc:0.9837 |best income_auc:0.9892    best marital_auc:0.9826|
-|  微调检查点 | 2.66MB（.ckpt文件）  |893.8KB（.ckpt文件）|
-| 脚本  | [链接](https://gitee.com/mindspore/models/tree/master/research/recommend/mmoe)  |[链接](https://gitee.com/mindspore/models/tree/master/research/recommend/mmoe)|
-
+| 参数 | Ascend 910  | 
+|---|---|-
+| 模型版本  | MMoE  |
+| 资源  |  Ascend 910；CPU：2.60GHz，192核；内存：755G |
+| 上传日期  |2021-11-12 ;  |
+| MindSpore版本  | 1.3.0 |
+| 数据集  | census-income |
+| 训练参数  | epoch=100, batch_size = 32  |
+| 优化器  | Adam  |
+| 损失函数  | BCELoss |
+| 输出  | 概率 |
+|  损失 | 0.20949207 |
+|速度|0.671毫秒/步 |
+|总时长   |  17分钟 |
+|参数   | 23.55KB |
+|精度指标   | best income_auc:0.9895    best marital_auc:0.9837 |
+|  微调检查点 | 2.66MB（.ckpt文件）  |
+| 脚本  | [链接](https://gitee.com/mindspore/models/tree/master/research/recommend/mmoe)  |
 # 随机情况说明
 
 train.py中使用随机种子
